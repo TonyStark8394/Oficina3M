@@ -11,14 +11,13 @@ public class SistemadeArma : MonoBehaviour
     [SerializeField] Transform pontodeFogo;
     [SerializeField] GameObject tiro;
 
-    private float chargeTime = 0f;  // Tempo de carregamento
+    private float chargeTime = 0f;  
 
     void Update()
     {
         // Posição do mouse
         mousePosi = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Carregando o tempo enquanto o botão de disparo está pressionado
         if (Input.GetButton("Fire1"))
         {
             chargeTime += Time.deltaTime;  // Aumenta o tempo de carga
@@ -35,14 +34,11 @@ public class SistemadeArma : MonoBehaviour
             // Calculando a direção do tiro com base na posição do mouse
             Vector2 direction = (mousePosi - new Vector2(transform.position.x, transform.position.y)).normalized;
 
-            // Garantir que o tiro se mova na direção correta
             Rigidbody2D rb = novoTiro.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = direction * 10f;  // Ajuste de velocidade
+                rb.velocity = direction * 10f; 
             }
-
-            // Passando o tempo de carga para a bala
             Bala bala = novoTiro.GetComponent<Bala>();
             if (bala != null)
             {
@@ -55,7 +51,6 @@ public class SistemadeArma : MonoBehaviour
         }
     }
 
-    // Função que habilita o disparo novamente após o cooldown
     void CDTIRO()
     {
         podeAtiraR = true;
